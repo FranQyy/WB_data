@@ -16,14 +16,8 @@ def plot_pop(filename, country_code):
 	pop_years_index = pop_years_index[:-1]
 	pop_elec_values = pop_years.iloc[:-1,0]
 
-	pop_zp = zip(pop_years_index, pop_elec_values)
-	pop_list = list(pop_zp)
-	pop_dict = dict(pop_list)
 
-	country = pop_country.loc[0,'Country Name']
-	index=[]
-	index.append(country)
-	df = pd.DataFrame(pop_dict, index=index)
+	df = pd.DataFrame()
 	df = df.transpose()
 	df['Values'] = [float(n) for n in pop_elec_values]
 	df['Year'] = [int(n) for n in pop_years_index]
@@ -34,5 +28,4 @@ def plot_pop(filename, country_code):
 	plt.show()
 	return df
 
-
-print(plot_pop('pop_elec.csv', 'AFG'))
+plot_pop('pop_elec.csv', 'AFG')
