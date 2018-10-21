@@ -14,7 +14,7 @@ def plot_pop(filename, country_code):
 		pop_years = pop_country.iloc[:,2:]
 		pop_years = pop_years.transpose()
 
-		print(pop_years)
+		# print(pop_years)
 		pop_years_index = pop_years.index.get_values()
 		pop_years_index = pop_years_index[:-1]
 
@@ -22,13 +22,14 @@ def plot_pop(filename, country_code):
 			pop_elec_values = pop_years.iloc[:-1,0]
 		except:
 			pass
-		print(pop_years_index)
+		# print(pop_years_index)
 
 
 	df = pd.DataFrame()
 	df['Values'] = [float(n) for n in pop_elec_values]
 	df['Year'] = [int(n) for n in pop_years_index]
-
+	df['Year'] = df.Year.astype('str')
+	print(df.info())
 	# pop_country = pop_country.transpose()
 	
 	df.plot(x='Year', y='Values')
