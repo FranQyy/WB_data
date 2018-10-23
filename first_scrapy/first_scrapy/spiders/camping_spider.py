@@ -3,11 +3,20 @@ from first_scrapy.items import NewCamp
 
 class CampingSpider(scrapy.Spider):
 	name = "CampingSpider"
-	allowed_domains = [
-		'www.camping.hr',
-	]
-	start_urls = ['https://www.camping.hr/croatian-campsites']
 
+	def start_requests(self):
+
+		allowed_domains = [
+			'www.camping.hr',
+		]
+		start_urls = ['https://www.camping.hr/croatian-campsites',
+		'https://www.camping.hr/croatian-campsites-p2',
+
+		]
+		for url in start_urls:
+			yield scrapy.Request(url=url, callback=self.parse)
+
+	
 	def parse(self, response):
 		for i in range(1,21):
 			item = NewCamp()
