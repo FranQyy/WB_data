@@ -1,6 +1,7 @@
 import scrapy
 from first_scrapy.items import NewCamp
 
+from scrapy_splash import SplashRequest
 class CampingSpider(scrapy.Spider):
 	name = "CampingSpider"
 	url = []
@@ -13,12 +14,12 @@ class CampingSpider(scrapy.Spider):
 		start_urls = ['https://www.camping.hr/croatian-campsites']
 
 		for url in start_urls:
-			yield scrapy.Request(url=url, callback=self.parse)
+			yield SplashRequest(url=url, callback=self.parse)
 	
 	def parse(self, response):
 		for camp in response.xpath('//*[@id="the-serp"]/li'):
 			item = NewCamp()
-			item['name']=camp.xpath('div[2]/h2/strong/text()').extract()
+			item['name']=camp.xpath('div[2]/h2/strong/text()').extract() #różnią się linkiem
 
 			yield item
 

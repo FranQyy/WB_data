@@ -34,3 +34,8 @@ class NewCamp(scrapy.Item):
 	url = Field()
 	region = Field()
 	capacity = Field()
+
+class NewConcert(scrapy.Item):
+	name = Field()
+	url = Field()
+	date = Field()

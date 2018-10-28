@@ -14,6 +14,7 @@ class SecondSpider(scrapy.Spider):
 		item['headline']=response.xpath('//title/text()').extract()
 		item['url']=response.url
 		item['project']=self.settings.get('BOT_NAME')
-		item['spider']=self.names
+		item['spider']=self.name
 
 		return item
+		
